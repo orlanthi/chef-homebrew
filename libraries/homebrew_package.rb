@@ -37,8 +37,9 @@ class Chef
 
         protected
         def brew(*args)
+          args << @new_resource.options unless @new_resource.options.nil?
           run_command_with_systems_locale(
-            :command => "brew #{args.join(' ')}"
+            :command => "brew #{args.flatten.join(' ')}"
           )
         end
 
